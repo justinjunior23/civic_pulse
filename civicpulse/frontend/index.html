@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CivicPulse AI</title>
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    CivicPulse AI
+  </div>
+  <div class="header-meta">Community Issue Intelligence System</div>
+</header>
+
+<div class="layout">
+
+  <!-- Left: Submit + Feed -->
+  <div class="left-panel">
+    <div class="panel-header">
+      <div class="panel-title">Issue Reporter</div>
+      <div class="panel-desc">Submit a community problem in plain language</div>
+    </div>
+
+    <div class="report-form">
+      <textarea id="reportInput" placeholder="e.g. Street lights not working in Kacyiru for 3 days"></textarea>
+      <button class="submit-btn" id="submitBtn" onclick="submitReport()">
+        <div class="spinner" id="spinner"></div>
+        <span id="btnText">Analyse &amp; Submit</span>
+      </button>
+    </div>
+
+    <div class="issue-feed" id="issueFeed">
+      <div class="empty-state" id="emptyFeed">
+        <div class="empty-icon">📋</div>
+        <div class="empty-text">No reports yet.<br>Submit an issue above.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Dashboard -->
+  <div class="right-panel">
+    <div class="dash-header">
+      <div>
+        <div class="dash-title">Priority Dashboard</div>
+        <div class="dash-subtitle">Actionable intelligence for decision-makers</div>
+      </div>
+      <button class="refresh-btn" onclick="loadDashboard()">↻ Refresh</button>
+    </div>
+
+    <!-- Severity stats -->
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-label">Total Reports</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">High Severity</div>
+        <div class="stat-value red" id="statHigh">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Medium</div>
+        <div class="stat-value yellow" id="statMedium">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Low</div>
+        <div class="stat-value green" id="statLow">0</div>
+      </div>
+    </div>
+    <div class="ai-summary-card" id="aiSummaryCard" style="display:none;">
+  <div class="ai-summary-title">🤖 AI Situation Summary</div>
+  <ul class="ai-summary-list" id="aiSummaryList"></ul>
+</div>
+    <!-- Status stats -->
+    <div class="stats-row" id="statusRow">
+      <div class="stat-box">
+        <div class="stat-label">Open</div>
+        <div class="stat-value" id="statOpen">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">In Progress</div>
+        <div class="stat-value yellow" id="statInProgress">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Resolved</div>
+        <div class="stat-value green" id="statResolved">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">&nbsp;</div>
+        <div class="stat-value" style="font-size:11px;color:#666;">status</div>
+      </div>
+    </div>
+
+    <div class="priority-section" id="prioritySection">
+      <div class="empty-state" id="emptyDash">
+        <div class="empty-icon">📊</div>
+        <div class="empty-text">Submit issues to see the priority dashboard.</div>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-title">Issue Detail</div>
+      <div class="detail-grid" id="detailGrid"></div>
+      <!-- Map -->
+      <div class="map-section">
+        <div class="detail-field-label" style="padding: 0 0 6px 0;">Location Map</div>
+        <div id="mapContainer" class="map-container">
+          <div class="map-empty">Select an issue to see its location.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
